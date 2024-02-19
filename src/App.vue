@@ -24,7 +24,7 @@ const form = reactive({
 </script>
 
 <template>
-  <div class="border border-blue-500 m-10 items-center">
+  <div class="border border-blue-500 m-10 items-center w-100">
     <div class="container mx-auto m-10 space-y-4">
       <div class="flex justify-center">
         <h1 class="text-xl">Find person by ID</h1>
