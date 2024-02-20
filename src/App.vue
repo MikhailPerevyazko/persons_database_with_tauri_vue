@@ -5,6 +5,7 @@ import FindByIdButton from "./components/Buttons/FindByIdButton.vue";
 import AddInfoButton from "./components/Buttons/AddInfoButton.vue";
 import DeleteButton from "./components/Buttons/DeleteButton.vue";
 import InputDataLine from "./components/Inputs/InputDataLine.vue";
+import SelectAFileButton from "./components/Buttons/SelectAFileButton.vue";
 
 const input = ref("");
 </script>
@@ -13,6 +14,7 @@ const input = ref("");
   <div class="m-10 items-center">
     <h1 class="flex justify-center text-x1 mb-5">Find person by ID</h1>
     <div class="flex justify-center space-x-4 w-auto">
+      <SelectAFileButton></SelectAFileButton>
       <el-input v-model="input" placeholder="Please input ID:" />
       <FindByIdButton></FindByIdButton>
       <ShowInfoButton></ShowInfoButton>

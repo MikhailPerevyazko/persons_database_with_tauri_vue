@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { reactive } from "vue";
+import { ref } from "vue";
 
 onMounted(() => {});
-
+const value = ref(true);
 const form = reactive({
   name: "",
   surname: "",
   middleName: "",
   dateOfBirth: "",
-  gender: "",
 });
 </script>
 
@@ -29,9 +29,7 @@ const form = reactive({
     <el-form-item label="Date of birth">
       <el-input v-model="form.dateOfBirth" />
     </el-form-item>
-    <el-form-item label="Gender">
-      <el-input v-model="form.gender" />
-    </el-form-item>
+    <el-switch v-model="value" active-text="Male" inactive-text="Female" />
   </el-form>
 </template>
 
