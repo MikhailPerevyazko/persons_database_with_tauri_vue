@@ -5,7 +5,7 @@ onMounted(() => {});
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div>
     <el-button type="primary">Select a file</el-button>
   </div>
 </template>

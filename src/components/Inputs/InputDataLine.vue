@@ -14,7 +14,7 @@ const form = reactive({
 </script>
 
 <template>
-  <el-form :model="form" label-width="120px ">
+  <el-form class="mb-5" :model="form" label-width="120px ">
     <el-form-item label="Name">
       <el-input v-model="form.name" />
     </el-form-item>
