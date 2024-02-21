@@ -10,11 +10,6 @@ import InputDataLine from "./components/Inputs/InputDataLine.vue";
 import SelectAFileButton from "./components/Buttons/SelectAFileButton.vue";
 
 const input = ref("");
-
-// const handleClick = () => {
-//   // eslint-disable-next-line no-alert
-//   alert("button click");
-// };
 </script>
 
 <template>

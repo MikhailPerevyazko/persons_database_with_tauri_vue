@@ -1,0 +1,37 @@
+persons:
+  - id: 2100709
+    name: dadsad
+    surname: dasdasd
+    middle_name: dadasdwqd
+    date_of_birth: 0090-01-11
+    gender: true
+  - id: 5812290
+    name: Oleg
+    surname: Tinkov
+    middle_name: Urievich
+    date_of_birth: 1971-01-01
+    gender: true
+  - id: 2877343
+    name: Maria
+    surname: Yakovleva
+    middle_name: Olegovna
+    date_of_birth: 2001-06-21
+    gender: false
+  - id: 3324365
+    name: Mikhail
+    surname: Perevyazko
+    middle_name: Sergeevich
+    date_of_birth: 2001-06-28
+    gender: true
+  - id: 1111111
+    name: Maksim
+    surname: Ivanov
+    middle_name: Petrovich
+    date_of_birth: 2001-01-01
+    gender: true
+  - id: 4324234
+    name: Elena
+    surname: Golovina
+    middle_name: Dmitrievna
+    date_of_birth: 1998-03-29
+    gender: false
