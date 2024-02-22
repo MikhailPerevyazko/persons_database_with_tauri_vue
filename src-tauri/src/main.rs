@@ -46,6 +46,7 @@ fn open_db(state: tauri::State<AppState>, file_path: String) {
 
 struct AppState {
     file_path: Mutex<PathBuf>,
+    person_storage: PersonStorage,
 }
 
 impl AppState {
