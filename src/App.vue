@@ -8,6 +8,8 @@ import AddInfoButton from "./components/Buttons/AddInfoButton.vue";
 import DeleteButton from "./components/Buttons/DeleteButton.vue";
 import InputDataLine from "./components/Inputs/InputDataLine.vue";
 import SelectAFileButton from "./components/Buttons/SelectAFileButton.vue";
+import OutputInfo from "./components/Outputs/OutputInfo.vue";
+import NumPad from "./components/Inputs/NumPad.vue";
 
 const input = ref("");
 </script>
@@ -36,5 +38,7 @@ const input = ref("");
       </el-dropdown>
       <ShowInfoButton></ShowInfoButton>
     </div>
+    <OutputInfo></OutputInfo>
   </div>
+  <NumPad></NumPad>
 </template>

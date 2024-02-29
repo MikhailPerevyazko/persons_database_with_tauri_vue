@@ -1,12 +1,17 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use chrono::NaiveDate;
-use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::Mutex;
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+use storage::PersonStorage;
 use tauri::Manager;
+
+mod db_manager;
+mod storage;
+mod ui;
+
+use crate::db_manager::{BDOperation, SerdePersons};
+
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -18,25 +23,12 @@ fn main() {
             }
             Ok(())
         })
-        .manage(AppState::new())
+        .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![open_db])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
-#[derive(Clone, Debug)]
-pub struct Person {
-    pub name: String,
-    pub surname: String,
-    pub middle_name: String,
-    pub date_of_birth: NaiveDate,
-    pub gender: bool,
-}
-
-#[derive(Clone, Debug)]
-pub struct PersonStorage {
-    persons: HashMap<i32, Person>,
-}
 #[tauri::command]
 fn open_db(state: tauri::State<AppState>, file_path: String) {
     println!("{file_path}");
@@ -44,17 +36,18 @@ fn open_db(state: tauri::State<AppState>, file_path: String) {
     println!("{:?}", state.get_file_path());
 }
 
+#[tauri::command]
+fn show_full_data(file_path: String, person_storage: PersonStorage) {
+    todo!()
+}
+
+#[derive(Default)]
 struct AppState {
     file_path: Mutex<PathBuf>,
-    person_storage: PersonStorage,
+    person_storage: Mutex<PersonStorage>,
 }
 
 impl AppState {
-    pub fn new() -> Self {
-        Self {
-            file_path: Mutex::new(PathBuf::new()),
-        }
-    }
     pub fn set_file_path(&self, file_path: String) {
         {
             let mut lock = self.file_path.lock().unwrap();
@@ -67,5 +60,37 @@ impl AppState {
             lock.to_owned()
         };
         result
+    }
+}
+
+impl BDOperation for AppState {
+    fn load(&self) -> Result<crate::db_manager::SerdePersons, Box<dyn std::error::Error>> {
+        let data: SerdePersons = match &self.file_path.lock() {
+            Ok(path) => {
+                let handler = std::fs::File::open(path.as_path())?;
+                serde_yaml::from_reader(&handler)?
+            }
+            Err(err) => {
+                return Err(err.to_string())?;
+            }
+        };
+
+        Ok(data)
+    }
+    fn save(
+        &self,
+        persons: &crate::db_manager::SerdePersons,
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        match &self.file_path.lock() {
+            Ok(path) => {
+                let handler = std::fs::File::create(path.as_path())?;
+                serde_yaml::to_writer(&handler, &persons)?;
+            }
+            Err(err) => {
+                return Err(err.to_string())?;
+            }
+        }
+
+        Ok(())
     }
 }

@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+// import { onMounted } from "vue";
+// onMounted(() => {});
+//import { invoke } from "@tauri-apps/api/tauri";
 
-onMounted(() => {});
+// function showInfo() {
+//   invoke{ }
+// }
 </script>
 
 <template>

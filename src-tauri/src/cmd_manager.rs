@@ -120,7 +120,7 @@ impl UI for TUI {
     }
 
     fn delet_param(&self, data: &mut PersonStorage) -> String {
-        //* Опрашиваем пользователя какое поле следуент удалить.
+        //* Опрашиваем пользователя какое поле следует удалить.
         let mut del_param: String = String::new();
         println!("Введите называние поля c большой буквы, которое вы хотите удалить: ");
         io::stdin()

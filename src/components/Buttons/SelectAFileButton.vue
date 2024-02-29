@@ -10,7 +10,7 @@ async function openSaveDialog() {
       },
     ],
   });
-  console.log(filePath);
+  console.log("Путь к файлу: " + filePath);
   invoke("open_db", { filePath: filePath });
 }
 </script>
