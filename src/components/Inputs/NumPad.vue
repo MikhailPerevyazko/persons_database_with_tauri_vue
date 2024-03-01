@@ -15,7 +15,7 @@ const dialogVisible = ref(false);
   <div class="m-4">
     <el-dialog v-model="dialogVisible">
       <form action="" method="post">
-        <el-row class="py-1">
+        <el-row>
           <input
             type="txt"
             id="text"
@@ -23,24 +23,8 @@ const dialogVisible = ref(false);
             placeholder="Select.."
             class="m-4"
           />
-          <el-button
-            class="m-4"
-            type="success"
-            id="recordButton"
-            onclick="document.getElementById('recordButton').addEventListener('click', function() {
-              var inputValue = document.getElementById('text').value;
-              document.getElementById('result').innerHTML = inputValue;
-            });"
-            >Record</el-button
-          >
-          <el-button
-            class="m-4"
-            id="clearButton"
-            type="danger"
-            onclick="document.getElementsByID('#text #result').value = ''"
-            >Clear</el-button
-          >
         </el-row>
+
         <el-row class="py-1 justify-center">
           <el-button
             onclick="document.getElementById('text').value+='1'; return false;"
@@ -102,12 +86,42 @@ const dialogVisible = ref(false);
           </el-button>
         </el-row>
         <el-row class="py-1 justify-center">
-          <el-button
-            onclick="document.getElementById('text').value+='0'; return false;"
-            value="0"
-          >
-            0
-          </el-button>
+          <div>
+            <el-button
+              class="size-24"
+              type="success"
+              id="recordButton"
+              onclick="document.getElementById('recordButton').addEventListener('click', function() {
+                    var inputValue = document.getElementById('text').value;
+                    if(inputValue.charAt() == '0') {
+                      var string = document.getElementById('result').innerHTML = inputValue;
+                      var new_string = string.slice(1)
+                      document.getElementById('result').innerHTML = new_string; 
+                    } else {
+                      document.getElementById('result').innerHTML = inputValue;
+                    }
+                  });"
+              >Record</el-button
+            >
+            <el-button
+              onclick="document.getElementById('text').value+='0'; return false;"
+              value="0"
+            >
+              0
+            </el-button>
+            <el-button
+              class="size-24"
+              id="clearButton"
+              type="danger"
+              onclick="document.getElementById('clearButton').addEventListener('click', function() {
+                    var emptyString = '';
+                    getElementById('result').innerHTML = emptyString;
+                    getElementById('text').innerHTML = emptyString;
+                  });"
+            >
+              Clear</el-button
+            >
+          </div>
         </el-row>
       </form>
     </el-dialog>
