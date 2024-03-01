@@ -40,5 +40,7 @@ const input = ref("");
     </div>
     <OutputInfo></OutputInfo>
   </div>
-  <NumPad></NumPad>
+  <div class="m-10">
+    <NumPad></NumPad>
+  </div>
 </template>
